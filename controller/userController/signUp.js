@@ -4,7 +4,7 @@
 const User = require("../../models/User.models");
 const bcrypt = require("bcryptjs");
 const SALT = 12;
-const fileUploader = require("./../../config/cloudinaryConfig");
+
 async function signUp(req, res) {
   try {
     const { name, username, email, password, age, height, weight, gender } =
