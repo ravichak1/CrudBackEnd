@@ -4,7 +4,6 @@ const {
   CloudinaryStorage,
 } = require("multer-storage-cloudinary");
 const multer = require("multer");
-const { width } = require("@fortawesome/free-solid-svg-icons/fa0");
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
