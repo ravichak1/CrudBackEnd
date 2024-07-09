@@ -18,7 +18,12 @@ async function createActivity(req, res) {
     }
 
     const id = findUser._id;
-    const weight = (findUser.weight * 2.205).toFixed(2) || 137;
+
+    let weight = (findUser.weight * 2.205).toFixed(2);
+    if (weight == "NaN") {
+      weight = 137;
+    }
+    console.log(weight);
 
     // Fetch calories burned data from API
     const response = await axios.get(
