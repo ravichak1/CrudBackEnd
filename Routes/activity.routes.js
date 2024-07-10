@@ -9,6 +9,6 @@ const {updateActivity}=require("./../controller/activityController/updateActivit
 router.route("/:username/create").post(isAuth,createActivity)
 
 router.route("/:username/delete/:id").delete(isAuth,deleteActivity)
-router.route("/:username/activity/:id").get(isAuth,getActivity)
+router.route("/:username/activity").get(isAuth,getActivity)
 router.route("/:username/activity/:id").put(isAuth,updateActivity)
 module.exports=router
