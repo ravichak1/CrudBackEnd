@@ -38,7 +38,9 @@ const userSchema = new Schema({
     gender:{
         type:String,
         enum:["male,female,other"],
-    }
+    },
+    followers: [{ type: Schema.Types.ObjectId, ref: 'User' }], // Users who follow this user
+    following: [{ type: Schema.Types.ObjectId, ref: 'User' }]  // Users this user follows
 })
 
 const User = model("User", userSchema);
