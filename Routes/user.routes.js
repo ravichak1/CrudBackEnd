@@ -22,7 +22,7 @@ router.route("/follow/:followusername").post(isAuth,followUser)
 router.route("/search").get(isAuth,searchUsers)
 router.route("/users/:username").get(isAuth,getEachUser)
 router.route("/unfollow/:unfollowusername").post(isAuth,unfollowUser)
-router.route("/user/:id").put(isAuth, updateUser);
+router.route("/user/:id").put(isAuth,fileUploader.single("image"), updateUser);
 router.route("/user/:id").delete(isAuth, deleteUser);
 
 module.exports = router;
