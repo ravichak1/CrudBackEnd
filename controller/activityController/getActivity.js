@@ -3,7 +3,7 @@ const User = require("./../../models/User.models");
 
 async function getActivity(req, res,next) {
     try {
-        const { username } = req.params;
+        const { username,id } = req.params;
         console.log(username);
 
         // Find the user by username
