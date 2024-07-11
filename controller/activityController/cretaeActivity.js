@@ -5,7 +5,7 @@ const Activity = require("./../../models/Activity.models");
 const User = require("./../../models/User.models");
 const axios = require("axios");
 
-async function createActivity(req, res) {
+async function createActivity(req, res,next) {
   try {
     const username = req.params.username;
     const { type, duration, sets, reps, distance, calories } = req.body;
@@ -63,8 +63,7 @@ async function createActivity(req, res) {
     console.log(newActivity);
     res.json({ message: "Activity created", activity: newActivity });
   } catch (error) {
-    console.log(`Error creating activity: ${error.message}`);
-    res.status(500).json({ message: "Server error" });
+    next(error)
   }
 }
 

@@ -1,8 +1,39 @@
-
-function errorHandler(err,req,res,next){
-    const status = res.statusCode ? res.statusCode : 500;
-    
-    res.json({message:err.message, stackTrace:err.stack});
+function errorHandler(error,req,res,next){
+    const statusCode = res.statusCode ? res.statusCode : 500;
+    switch(statusCode){
+        case 400:
+            res.json({
+                title:"Validation Failed",
+                message:error.message
+            });
+            break;
+        case 401:
+            res.json({
+                title:"Unathuorized",
+                message:error.message
+            });
+            break;
+        case 403:
+            res.json({
+                title:"Forbidden",
+                message:error.message
+            });
+            break;
+        case 404:
+            res.json({
+                title:"Not found",
+                message:error.message
+            });
+            break;
+        case 500:
+            res.json({
+                title:"Server not found",
+                message:error.message
+            });
+        default:
+            console.log("No error, All good!");
+            break;
+    }
 }
 
-module.exports = errorHandler
+module.exports=errorHandler;

@@ -4,7 +4,8 @@
 const User = require("../../models/User.models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-async function login(req, res) {
+const { Error } = require("mongoose");
+async function login(req, res, next) {
   try {
     const { username, password } = req.body;
 
@@ -36,8 +37,7 @@ async function login(req, res) {
       userName: foundUser.username,
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: "havent found" });
+    next(error)
   }
 }
 

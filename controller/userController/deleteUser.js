@@ -3,7 +3,7 @@
 //access private
 const User = require("./../../models/User.models");
 const Activity = require("./../../models/Activity.models");
-async function deleteUser(req, res) {
+async function deleteUser(req, res,next) {
   try {
     const id = req.params.id;
     console.log(id);
@@ -12,7 +12,7 @@ async function deleteUser(req, res) {
     const deleteActivity = await Activity.findOneAndDelete({ user: id });
     res.json({ message: "user deleted" });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 }
 

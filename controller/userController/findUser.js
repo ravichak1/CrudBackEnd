@@ -1,7 +1,7 @@
 // src/controllers/userController.js
 const User = require("./../../models/User.models");
 
-async function getEachUser(req, res) {
+async function getEachUser(req,res,next) {
   const username = req.params.username
   console.log(username);
   try {
@@ -12,8 +12,7 @@ async function getEachUser(req, res) {
       res.status(404).json({ message: "User not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    next(error)
   }
 }
 

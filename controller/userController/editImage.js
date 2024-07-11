@@ -3,7 +3,7 @@
 //access private
 const User=require('./../../models/User.models')
 
-async function editImage(req,res){
+async function editImage(req,res,next){
     try {
         const {id} = req.params
         const image=req.file.path
@@ -14,7 +14,7 @@ async function editImage(req,res){
         console.log(updateUser)
         
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 }
 

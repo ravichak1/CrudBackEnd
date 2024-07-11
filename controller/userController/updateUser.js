@@ -3,7 +3,7 @@
 //access private
 const User=require('./../../models/User.models')
 
-async function updateUser(req,res){
+async function updateUser(req,res,next){
     try {
         const {id} = req.params
         // const image=req.file.path
@@ -14,7 +14,7 @@ async function updateUser(req,res){
         console.log(updateUser)
         
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 }
 

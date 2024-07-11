@@ -5,7 +5,7 @@ const User = require("../../models/User.models");
 const bcrypt = require("bcryptjs");
 const SALT = 12;
 
-async function signUp(req, res) {
+async function signUp(req, res,next) {
   try {
     const { name, username, email, password, age, height, weight, gender } =
       req.body;
@@ -41,7 +41,7 @@ async function signUp(req, res) {
       message: `Created user ${createdUser.username} with id ${createdUser._id}`,
     });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 }
 

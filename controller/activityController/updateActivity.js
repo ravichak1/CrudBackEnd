@@ -4,7 +4,7 @@
 const Activity=require("./../../models/Activity.models")
 const User=require("./../../models/User.models")
 
-async function updateActivity(req,res){
+async function updateActivity(req,res,next){
     try {
        const {id}=req.params
        const{type,duration,sets,reps,distance,calories}=req.body
@@ -13,7 +13,7 @@ async function updateActivity(req,res){
        console.log(updateActivity)
        res.json(updateActivity)
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 }
 

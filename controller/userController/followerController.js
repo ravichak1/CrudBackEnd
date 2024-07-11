@@ -1,7 +1,7 @@
 // controllers/userController.js
 const User = require('./../../models/User.models');
 
-async function followUser(req, res) {
+async function followUser(req, res, next) {
     const username = req.user.username;
     const followusername = req.params.followusername;
     const follow=await User.find({username:followusername})
@@ -25,12 +25,11 @@ async function followUser(req, res) {
 
         res.status(200).json({ message: 'Successfully followed user' });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Internal server error' });
+        next(error)
     }
 }
 
-async function unfollowUser(req, res) {
+async function unfollowUser(req, res,next) {
     const username = req.user.username;
     const unfollowusername = req.params.unfollowusername;
 
@@ -51,8 +50,7 @@ async function unfollowUser(req, res) {
 
         res.status(200).json({ message: 'Successfully unfollowed user' });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Internal server error' });
+        next(error)
     }
 }
 

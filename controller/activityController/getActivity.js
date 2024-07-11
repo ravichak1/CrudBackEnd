@@ -1,7 +1,7 @@
 const Activity = require("./../../models/Activity.models");
 const User = require("./../../models/User.models");
 
-async function getActivity(req, res) {
+async function getActivity(req, res,next) {
     try {
         const { username } = req.params;
         console.log(username);
@@ -20,8 +20,7 @@ async function getActivity(req, res) {
 
         res.json(findActivity);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server error" });
+        next(error)
     }
 }
 

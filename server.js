@@ -1,16 +1,17 @@
-//dotenv configuration defined
 require("dotenv").config();
-//mongodb url connection
 require("./config/dbConnection");
-//externeal middleware and express define
+
+const errorHandler=require("./middleware/errorHandler")
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
-const errorHandler = require("./middleware/errorHandler");
-//port description
+
+
+
 const PORT = process.env.PORT || 5005;
-//app creation
+
+
 const app = express();
 
 //Middlewares

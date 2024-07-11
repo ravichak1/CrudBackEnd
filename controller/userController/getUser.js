@@ -1,7 +1,7 @@
 const User = require('./../../models/User.models');
 const Activity = require('./../../models/Activity.models');
 
-async function getUser(req, res) {
+async function getUser(req, res, next) {
     try {
         const { id } = req.params;
         console.log(`Fetching user with ID: ${id}`);
@@ -28,8 +28,7 @@ async function getUser(req, res) {
 
         res.json({ user, totalCaloriesBurnt, totalWorkouts, workoutList });
     } catch (error) {
-        console.error("Error fetching user data:", error);
-        res.status(500).json({ message: "An error occurred while fetching user data" });
+        next(error)
     }
 }
 
