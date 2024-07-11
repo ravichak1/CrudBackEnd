@@ -7,6 +7,8 @@ const { updateUser } = require("../controller/userController/updateUser");
 const { deleteUser } = require("../controller/userController/deleteUser");
 const {getAllUser}= require("./../controller/userController/getAllUser")
 const {followUser, unfollowUser} = require("./../controller/userController/followerController")
+const {searchUsers} = require("./../controller/userController/searchUser")
+const {getEachUser} = require("./../controller/userController/findUser")
 const fileUploader = require("./../config/cloudinaryConfig");
 
 
@@ -16,8 +18,10 @@ router.route("/login").post(login);
 
 router.route("/user/:id").get(isAuth, getUser);
 router.route("/users").get(isAuth, getAllUser);
-router.route("/:userID/follow/:id").post(isAuth,followUser)
-router.route("/unfollow/:id").post(isAuth,unfollowUser)
+router.route("/follow/:followusername").post(isAuth,followUser)
+router.route("/search").get(isAuth,searchUsers)
+router.route("/users/:username").get(isAuth,getEachUser)
+router.route("/unfollow/:unfollowusername").post(isAuth,unfollowUser)
 router.route("/user/:id").put(isAuth, updateUser);
 router.route("/user/:id").delete(isAuth, deleteUser);
 

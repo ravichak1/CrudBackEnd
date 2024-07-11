@@ -17,7 +17,7 @@ async function getUser(req, res) {
 
         const totalCalories = await Activity.aggregate([
             { $match: { user: user._id, date: { $gte: startDay, $lt: endDay } } },
-            { $group: { _id: null, totalCaloriesBurnt: { $sum: "$calories" }, workoutList: { $push: "$type" } } }
+            { $group: { _id: user._id, totalCaloriesBurnt: { $sum: "$calories" }, workoutList: { $push: "$type" } } }
         ]);
 
         const totalCaloriesBurnt = totalCalories.length > 0 ? totalCalories[0].totalCaloriesBurnt : 0;

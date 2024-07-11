@@ -2,9 +2,12 @@
 const User = require('./../../models/User.models');
 
 async function followUser(req, res) {
-    const userId = req.params.userID;
-    const followUserId = req.params.id;
-    console.log(userId)
+    const username = req.user.username;
+    const followusername = req.params.followusername;
+    const follow=await User.find({username:followusername})
+    const user=await User.find({username:username})
+    const followUserId = follow[0]._id
+    const userId = user[0]._id
     if (userId === followUserId) {
         return res.status(400).json({ error: "You cannot follow yourself" });
     }
@@ -28,8 +31,8 @@ async function followUser(req, res) {
 }
 
 async function unfollowUser(req, res) {
-    const userId = req.user._id;
-    const unfollowUserId = req.params.id;
+    const username = req.user.username;
+    const unfollowusername = req.params.unfollowusername;
 
     if (userId === unfollowUserId) {
         return res.status(400).json({ error: "You cannot unfollow yourself" });

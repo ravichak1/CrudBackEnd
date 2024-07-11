@@ -1,11 +1,13 @@
 
 
 const User= require("./../../models/User.models")
-
+const Activity=require("./../../models/Activity.models")
 async function getAllUser(req,res){
     try{
-        const users= await User.find()
-        res.status(201).json({users:users})
+        const user= await User.find({})
+        const activity= await Activity.find().populate("user")
+       console.log(activity, user)
+        res.status(201).json({activities:activity,users:user})
     }catch(error){
         console.log(error)
     }
