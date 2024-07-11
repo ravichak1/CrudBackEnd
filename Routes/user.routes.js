@@ -10,7 +10,7 @@ const {followUser, unfollowUser} = require("./../controller/userController/follo
 const {searchUsers} = require("./../controller/userController/searchUser")
 const {getEachUser} = require("./../controller/userController/findUser")
 const fileUploader = require("./../config/cloudinaryConfig");
-
+const {editImage}=require('./../controller/userController/editImage')
 
 router.route("/signup").post(fileUploader.single("image"), signUp);
 
@@ -23,6 +23,7 @@ router.route("/search").get(isAuth,searchUsers)
 router.route("/users/:username").get(isAuth,getEachUser)
 router.route("/unfollow/:unfollowusername").post(isAuth,unfollowUser)
 router.route("/user/:id").put(isAuth,fileUploader.single("image"), updateUser);
+router.route("/user/image/:id").put(isAuth,fileUploader.single("image"), editImage);
 router.route("/user/:id").delete(isAuth, deleteUser);
 
 module.exports = router;

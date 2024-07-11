@@ -15,6 +15,10 @@ const activitySchema= new Schema({
         required:true,
         default:1
     },
+    image:{
+        type:String,
+        default:"https://media.istockphoto.com/id/496719837/photo/motivation-fuels-the-human-engine.jpg?s=612x612&w=0&k=20&c=kz5YL7dYzmQpbRTbEafeFshJ3nSslVoJ5Hypf0uxYzI=",
+    },
     sets:{
         type:Number,
     },
