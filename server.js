@@ -1,16 +1,13 @@
 require("dotenv").config();
 require("./config/dbConnection");
 
-const errorHandler=require("./middleware/errorHandler")
+const errorHandler = require("./middleware/errorHandler");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
 
-
-
 const PORT = process.env.PORT || 5005;
-
 
 const app = express();
 
@@ -24,7 +21,6 @@ app.use(errorHandler);
 //routes definition
 app.use("/", require("./Routes/user.routes"));
 app.use("/", require("./Routes/activity.routes"));
-app.use("/api", require("./Routes/nutrients.routes"));
 
 app.get("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
